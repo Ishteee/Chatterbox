@@ -66,7 +66,7 @@ cd chatterbox
 
 ### 3. Download Llama 3.2 model from ollama and run locally
 
-### 4. Run the website
+### 4. Run it using python app.py
 
 
  ## **License**
