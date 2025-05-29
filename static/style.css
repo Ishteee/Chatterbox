@@ -1,0 +1,227 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 50px auto;
+    background-color: #2e2e2e;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.chat-header {
+    padding: 10px;
+    background-color: #444;
+    text-align: center;
+    font-size: 1.5rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.chat-box {
+    height: 400px;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #1a1a1a;
+    border-bottom: 2px solid #444;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+/* User message styling */
+.user-message {
+    background-color: #d3d3d3;
+    color: #000;
+    text-align: right;
+    align-self: flex-end;
+}
+
+/* AI message styling */
+.bot-message {
+    background-color: #444444;
+    color: white;
+    text-align: left;
+    align-self: flex-start;
+}
+
+/* Chat input container */
+.chat-input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #444;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.chat-input-container input {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.chat-input-container button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.chat-input-container button:hover {
+    background-color: #218838;
+}
+
+/* Styling for the message container */
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Audio styling */
+audio {
+    margin-top: 5px;
+    width: 100%;
+}
+
+/* Existing styling from previous steps */
+.chat-input-container button#record-button {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-input-container button#record-button.recording {
+    background-color: #d32f2f;
+}
+
+.chat-input-container button#send-button {
+    background-color: #28a745;
+}
+
+audio {
+    margin-top: 5px;
+    width: 100%;
+}
+
+
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 5px solid #000000;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* styles.css */
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;  /* Set background color */
+    margin: 0;
+    padding: 20px;
+    color: #f4f4f4;  /* Set text color for contrast */
+}
+
+#people-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Center the cards */
+}
+
+.card {
+    background-color: #2a2a2a;  /* Card background color */
+    border-radius: 10px;  /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  /* Shadow for depth */
+    width: 250px;  /* Set card width */
+    transition: transform 0.3s;  /* Smooth scaling effect */
+    text-align: center;
+}
+
+.card:hover {
+    transform: scale(1.05);  /* Scale up on hover */
+}
+
+.card h2 {
+    margin: 0 0 10px 0;  /* Space below the title */
+    font-size: 1.5em;  /* Title font size */
+}
+
+.card p {
+    margin: 5px 0;  /* Space between paragraphs */
+    line-height: 1.5;  /* Line height for readability */
+}
+
+#title {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 50px;
+    margin-bottom: 100px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.add {
+    background-color: #2a2a2a;  /* Card background color */
+    border-radius: 10px;  /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  /* Shadow for depth */
+    width: 25px;  /* Set card width */
+    transition: transform 0.3s;  /* Smooth scaling effect */
+    text-align: center;
+    font-size: 1em;
+}
+
+.add:hover {
+    transform: scale(1.05);  /* Scale up on hover */
+}

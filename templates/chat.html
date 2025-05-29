@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2 id="chat-title"></h2>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <!-- Messages will appear here -->
+        </div>
+        <div id="loading-indicator" class="loading-indicator" style="display: none;"></div>
+        <div class="chat-input-container">
+            <button id="record-button">Record</button>
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <audio id="voice-output" controls style="display:none;"></audio>
+
+    <script>
+
+        // Global variable to store the person's name
+        let personName = '';
+        const chatBox = document.getElementById("chat-box");
+
+        // Function to get the ID from the URL
+        function getIdFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        // Fetch person details using the ID
+        async function fetchPersonDetails() {
+            const personId = getIdFromURL();
+            try {
+                const response = await fetch(`/api/people/${personId}`); // Fetch from your API
+                const person = await response.json();
+                
+                // Display the person's name in the chat title
+                document.getElementById('chat-title').innerText = `Chat with ${person.name}`;
+                
+                // Store the person's name in a global variable
+                personName = person.name;
+                loadMessages();
+
+            } catch (error) {
+                console.error('Error fetching person details:', error);
+            }
+        }
+
+        async function appendMessage(text, sender) {
+            const messageContainer = document.createElement("div");
+            messageContainer.classList.add("message-container");
+
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("message");
+            messageDiv.classList.add(sender === "User" ? "user-message" : "bot-message");
+            messageDiv.textContent = text;
+            messageContainer.appendChild(messageDiv);
+
+            chatBox.appendChild(messageContainer);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+
+        async function loadMessages() {
+        try {
+            console.log(`fetching messages for ${personName}`)
+            const response = await fetch(`/api/get_messages/${personName}`);
+            if (response.ok) {
+                const messages = await response.json();
+                
+                // Loop through the messages and append them to the chat box
+                messages.forEach(message => {
+                    appendMessage(message.user, "User");  // Append user's message
+                    appendMessage(message.ai, "Bot");     // Append AI's message
+                });
+            } else {
+                console.error('Failed to load messages:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error loading messages:', error);
+        }
+    }
+
+        // Fetch person details when the page loads
+        window.onload = fetchPersonDetails;
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

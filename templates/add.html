@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Person</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/add_style.css">
+</head>
+<body>
+    <div class="container">
+    <h1>Add a New Person</h1>
+    <form id="add-person-form" enctype="multipart/form-data">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="description">Description (max 500 characters):</label>
+        <textarea id="description" name="description" rows="4" maxlength="500" required></textarea>
+        <div id="char-counter">500 characters left</div>
+
+        <label for="audio">Audio Sample:</label>
+        <input type="file" id="audio" name="audio" accept="audio/*" required>
+
+        <button type="submit">Add Person</button>
+    </form>
+</div>
+
+<script>
+
+        // Character counter for the description field
+        const descriptionField = document.getElementById('description');
+        const charCounter = document.getElementById('char-counter');
+
+        descriptionField.addEventListener('input', function() {
+            const remaining = 500 - descriptionField.value.length;
+            charCounter.textContent = `${remaining} characters left`;
+        });
+
+
+    document.getElementById('add-person-form').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(this);
+
+        try {
+            const response = await fetch('/add', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                // Redirect to index page upon successful submission
+                window.location.href = "/"; // Redirect to the index page
+            } else {
+                console.error('Error adding person:', response.statusText);
+                // Handle error appropriately (e.g., show an error message)
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle error appropriately
+        }
+    });
+</script>
+</body>
+</html>

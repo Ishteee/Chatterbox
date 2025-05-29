@@ -1,0 +1,83 @@
+/* General body styling */
+body {
+    background-color: #1a1a1a;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for the form */
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Centered header styling */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Label styling */
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Input and textarea fields styling */
+input[type="text"], 
+input[type="file"], 
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    font-size: 14px;
+}
+
+/* Additional textarea styling */
+textarea {
+    resize: vertical; /* Only vertical resizing allowed */
+    height: 100px; /* Default height for the description box */
+}
+
+/* Submit button styling */
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Anchor link styling */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+/* Character counter styling */
+#char-counter {
+    font-size: 12px;
+    color: #bbb;
+    text-align: right; /* Align character counter to the right */
+    margin-bottom: 20px;
+}

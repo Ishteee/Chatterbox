@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatterBox</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/style.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <div id="title">Welcome to ChatterBox</div>
+    <div id="people-container"></div>
+
+    <script>
+        // Function to fetch people data from the API
+        async function fetchPeople() {
+            try {
+                const response = await fetch('/api/people');  // Fetch from the Flask endpoint
+                const people = await response.json();
+
+                // Call function to display people cards
+                displayPeople(people);
+            } catch (error) {
+                console.error('Error fetching people:', error);
+            }
+        }
+
+        // Function to display people cards
+        function displayPeople(people) {
+            const container = document.getElementById('people-container');
+            container.innerHTML = ''; // Clear previous content
+
+            people.forEach(person => {
+                const card = document.createElement('div');
+                card.className = 'card'; // Add a class for styling
+                card.innerHTML = `
+                    <h2>${person.name}</h2>
+                    <p>${person._id}</p>
+                `;
+
+                // Add a click event to the card
+                card.onclick = () => {
+                    // Redirect to chat page with the person's ID in the URL
+                    window.location.href = `/chat?id=${person._id}`; // Assuming 'id' is the unique identifier
+                };
+
+                container.appendChild(card);
+            });
+            const add = document.createElement('div');
+            add.className = 'add';
+            add.innerHTML = `
+                        <h2>+</h2>
+                    `;
+
+            add.onclick = () => {
+                // Redirect to add person page
+                window.location.href = "/add"; 
+            };
+
+            container.append(add);
+        }
+
+        
+
+        // Fetch people data when the page loads
+        window.onload = fetchPeople;
+    </script>
+</body>
+</html>
